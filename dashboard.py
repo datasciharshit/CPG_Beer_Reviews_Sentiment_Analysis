@@ -97,7 +97,7 @@ st.markdown("""
         border: 1px solid #475569;
     }
 </style>
-""", unsafe_style_html=True)
+""", unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # Cached Resources (Models, Tokenizer, Pipelines)
@@ -264,39 +264,39 @@ with tab1:
 
             # A. Baseline TF-IDF + LogReg
             with col_base:
-                st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-                st.markdown("<div class='metric-title'>Baseline (TF-IDF + LR)</div>", unsafe_style_html=True)
+                st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-title'>Baseline (TF-IDF + LR)</div>", unsafe_allow_html=True)
                 if vectorizer and baseline_model:
                     vec_text = vectorizer.transform([cleaned_text])
                     pred_label = baseline_model.predict(vec_text)[0]
                     # Map to class pill style
                     pill_class = f"sentiment-{pred_label.lower()}"
-                    st.markdown(f"<span class='{pill_class}'>{pred_label}</span>", unsafe_style_html=True)
+                    st.markdown(f"<span class='{pill_class}'>{pred_label}</span>", unsafe_allow_html=True)
                 else:
-                    st.markdown("<span class='sentiment-neutral'>Model Not Loaded</span>", unsafe_style_html=True)
-                st.markdown("<div class='metric-delta'>Target: 74% F1</div>", unsafe_style_html=True)
-                st.markdown("</div>", unsafe_style_html=True)
+                    st.markdown("<span class='sentiment-neutral'>Model Not Loaded</span>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-delta'>Target: 74% F1</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
 
             # B. Off-the-shelf DistilBERT
             with col_ots:
-                st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-                st.markdown("<div class='metric-title'>Off-the-shelf DistilBERT</div>", unsafe_style_html=True)
+                st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-title'>Off-the-shelf DistilBERT</div>", unsafe_allow_html=True)
                 if ots_classifier:
                     ots_res = ots_classifier(review_input)[0]
                     raw_ots_label = ots_res['label']
                     pred_label = OTS_LABEL_MAP.get(raw_ots_label, raw_ots_label)
                     score = ots_res['score']
                     pill_class = f"sentiment-{pred_label.lower()}"
-                    st.markdown(f"<span class='{pill_class}'>{pred_label} ({score*100:.1f}%)</span>", unsafe_style_html=True)
+                    st.markdown(f"<span class='{pill_class}'>{pred_label} ({score*100:.1f}%)</span>", unsafe_allow_html=True)
                 else:
-                    st.markdown("<span class='sentiment-neutral'>Model Not Loaded</span>", unsafe_style_html=True)
-                st.markdown("<div class='metric-delta'>Target: 86% F1</div>", unsafe_style_html=True)
-                st.markdown("</div>", unsafe_style_html=True)
+                    st.markdown("<span class='sentiment-neutral'>Model Not Loaded</span>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-delta'>Target: 86% F1</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
 
             # C. Domain Fine-tuned DistilBERT
             with col_ft:
-                st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-                st.markdown("<div class='metric-title'>Domain Fine-tuned DistilBERT</div>", unsafe_style_html=True)
+                st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-title'>Domain Fine-tuned DistilBERT</div>", unsafe_allow_html=True)
                 if ft_classifier:
                     ft_res = ft_classifier(cleaned_text)[0]
                     raw_ft_label = ft_res['label']
@@ -304,7 +304,7 @@ with tab1:
                     pred_label = OTS_LABEL_MAP.get(raw_ft_label, raw_ft_label)
                     score = ft_res['score']
                     pill_class = f"sentiment-{pred_label.lower()}"
-                    st.markdown(f"<span class='{pill_class}'>{pred_label} ({score*100:.1f}%)</span>", unsafe_style_html=True)
+                    st.markdown(f"<span class='{pill_class}'>{pred_label} ({score*100:.1f}%)</span>", unsafe_allow_html=True)
                 else:
                     # Realistic fallback for fine-tuned predictions based on keyword signals
                     # to keep the dashboard visual representations clean and functional
@@ -316,9 +316,9 @@ with tab1:
                         pred_label = "Positive"
                     
                     pill_class = f"sentiment-{pred_label.lower()}"
-                    st.markdown(f"<span class='{pill_class}'>{pred_label} (94.2% - Simulated)</span>", unsafe_style_html=True)
-                st.markdown("<div class='metric-delta'>Target: 90-92% F1</div>", unsafe_style_html=True)
-                st.markdown("</div>", unsafe_style_html=True)
+                    st.markdown(f"<span class='{pill_class}'>{pred_label} (94.2% - Simulated)</span>", unsafe_allow_html=True)
+                st.markdown("<div class='metric-delta'>Target: 90-92% F1</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("---")
 
@@ -340,7 +340,7 @@ with tab1:
                         if count > 0:
                             matches = [f"{m['text']} → {m['lemma']}" for m in details["matches"]]
                             for match in set(matches):
-                                st.markdown(f"<span class='aspect-pill'>{match}</span>", unsafe_style_html=True)
+                                st.markdown(f"<span class='aspect-pill'>{match}</span>", unsafe_allow_html=True)
                         else:
                             st.caption("No attributes detected.")
             else:
@@ -355,23 +355,23 @@ with tab2:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>Baseline Logistic Regression</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>74%</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>F1 Weighted Accuracy</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>Baseline Logistic Regression</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>74%</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>F1 Weighted Accuracy</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
     with col2:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>Off-the-shelf DistilBERT</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>86%</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>F1 Score (Binary/General)</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>Off-the-shelf DistilBERT</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>86%</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>F1 Score (Binary/General)</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
     with col3:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>Fine-tuned DistilBERT</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>90-92%</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>F1 Domain-Adapted Target</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>Fine-tuned DistilBERT</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>90-92%</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>F1 Domain-Adapted Target</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -488,23 +488,23 @@ with tab4:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>Dataset Scaled Target</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>100,000+</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>Structured CPG Reviews</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>Dataset Scaled Target</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>100,000+</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>Structured CPG Reviews</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
     with col2:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>Average CPU Throughput</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>~180 /s</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>Reviews Cleaned & Processed</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>Average CPU Throughput</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>~180 /s</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>Reviews Cleaned & Processed</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
     with col3:
-        st.markdown("<div class='metric-card'>", unsafe_style_html=True)
-        st.markdown("<div class='metric-title'>GPU Fine-Tuning Rate</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-value'>17.2 /s</div>", unsafe_style_html=True)
-        st.markdown("<div class='metric-delta'>Apple Silicon MPS (Metal)</div>", unsafe_style_html=True)
-        st.markdown("</div>", unsafe_style_html=True)
+        st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-title'>GPU Fine-Tuning Rate</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-value'>17.2 /s</div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-delta'>Apple Silicon MPS (Metal)</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""
     ### Why Our Pipeline Scales:
