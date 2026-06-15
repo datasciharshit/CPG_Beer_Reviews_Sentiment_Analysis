@@ -20,3 +20,6 @@ dist/
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Documentation / Prep files (local only)
+interview_prep.txt
