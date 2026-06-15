@@ -1,0 +1,15 @@
+spacy==3.7.6
+textblob==0.18.0.post0
+beautifulsoup4>=4.0.0
+nltk==3.9.1
+lxml
+deep-translator
+joblib
+scikit-learn
+matplotlib
+seaborn
+torch
+transformers
+datasets
+accelerate
+

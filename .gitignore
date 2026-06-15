@@ -1,0 +1,22 @@
+# Datasets (large files should not be pushed to Git)
+dataset/
+
+# Saved model checkpoints and large artifacts
+artifacts/
+results/
+logs/
+
+# Python caches and distribution packaging
+__pycache__/
+*.pyc
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+
+# OS specific files
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
