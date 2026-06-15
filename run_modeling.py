@@ -62,9 +62,9 @@ def main():
         train_baseline_df = train_df
         test_baseline_df = test_df
         error_analysis_size = 5000
-        fine_tune_train_size = 20000
-        fine_tune_eval_size = 2000
-        epochs = 2
+        fine_tune_train_size = 5000
+        fine_tune_eval_size = 1000
+        epochs = 1
 
     # Step 2: Train TF-IDF + Logistic Regression Baseline
     logger.info("=== STEP 2: Training TF-IDF + Logistic Regression Baseline ===")

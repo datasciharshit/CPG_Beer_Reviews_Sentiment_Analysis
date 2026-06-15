@@ -22,9 +22,9 @@ def main():
 
     logger.info(f"Loading dataset from {DATASET_PATH}...")
     
-    # We will process a subset of 5,000 reviews first to demonstrate speed & correctness.
-    # To run on the full 100k reviews, simply comment out or remove 'nrows=5000'.
-    N_ROWS = 5000
+    # We will process a subset of 25,000 reviews first to demonstrate speed & correctness.
+    # To run on the full 100k reviews, simply comment out or remove 'nrows=25000'.
+    N_ROWS = 25000
     df = pd.read_csv(DATASET_PATH, nrows=N_ROWS)
     logger.info(f"Successfully loaded {len(df)} rows.")
 

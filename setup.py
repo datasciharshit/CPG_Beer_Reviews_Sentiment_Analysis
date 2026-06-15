@@ -10,7 +10,7 @@ setuptools.setup(
     name="beverage_cleaner",
     version="0.1.0",
     author="Harshit",
-    author_email="harshit@example.com",
+    author_email="datasciharshit.com",
     description="An industry-grade text cleaning and domain term extraction package for CPG beverage reviews.",
     long_description=long_description,
     long_description_content_type="text/markdown",
