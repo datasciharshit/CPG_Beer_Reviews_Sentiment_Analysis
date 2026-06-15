@@ -414,7 +414,7 @@ with tab2:
         # Load and render confusion matrix if it exists
         cm_image_path = "artifacts/confusion_matrix_tuned.png"
         if os.path.exists(cm_image_path):
-            st.image(cm_image_path, use_column_width=True)
+            st.image(cm_image_path, use_container_width=True)
         else:
             st.info("Train the baseline model to visualize the holdout confusion matrix.")
 
